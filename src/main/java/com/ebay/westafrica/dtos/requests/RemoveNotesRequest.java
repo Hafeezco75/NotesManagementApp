@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 public class RemoveNotesRequest {
+    private String id;
     private String Title;
     private String Content;
     private Author author;

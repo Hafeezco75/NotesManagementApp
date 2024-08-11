@@ -7,6 +7,7 @@ import com.ebay.westafrica.dtos.requests.ModifyNotesRequest;
 import com.ebay.westafrica.dtos.requests.ModifyRemindersRequest;
 import com.ebay.westafrica.dtos.requests.RemoveReminderRequest;
 import com.ebay.westafrica.dtos.responses.AddReminderResponse;
+import com.ebay.westafrica.dtos.responses.ModifyRemindersResponse;
 import com.ebay.westafrica.dtos.responses.RemoveReminderResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class RemindersServiceImplTest {
     }
 
     @Test
-    public void testThatUserCanGetReminders() {
+    public void testThatUserCanRemoveReminders() {
         RemoveReminderRequest removeReminderRequest = new RemoveReminderRequest();
         removeReminderRequest.setTitle("WAKE UP NIGERIA");
         removeReminderRequest.setDescription("Badass system and politicised Government");
@@ -52,7 +53,10 @@ public class RemindersServiceImplTest {
         modifyRemindersRequest.setTitle("ROMEO AND JULIET");
         modifyRemindersRequest.setDescription("Watch this Tragic blockbuster and be glad you did");
         modifyRemindersRequest.setDate(LocalDateTime.now());
-        modifyRemindersRequest
-
+        modifyRemindersRequest.setNotesCategory(NotesCategory.MOVIES);
+        modifyRemindersRequest.setReminderStatus(ReminderStatus.NEWLYADDED);
+        ModifyRemindersResponse modifyRemindersResponse = remindersService.modifyReminder(modifyRemindersRequest);
+        assertThat(modifyRemindersResponse.getMessage()).isNotNull();
+        assertThat(modifyRemindersResponse.getMessage()).isEqualTo("Successfully modified reminder");
     }
 }

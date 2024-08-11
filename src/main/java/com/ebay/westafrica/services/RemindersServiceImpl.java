@@ -38,7 +38,7 @@ public class RemindersServiceImpl implements RemindersService {
     public RemoveReminderResponse removeReminder(RemoveReminderRequest reminderRequest) {
         for (Reminders reminders : remindersRepository.findAll()) {
             if (reminders.getDate().equals(reminderRequest.getReminderDate())) {
-                if (reminders.getTitle().equals(reminderRequest.getReminder())) {
+                if (reminders.getTitle().equals(reminderRequest.getTitle())) {
                     remindersRepository.delete(reminders);
                 }
             } else {
@@ -60,6 +60,7 @@ public class RemindersServiceImpl implements RemindersService {
                 reminders.setDescription(modifyRemindersRequest.getDescription());
                 reminders.setDate(modifyRemindersRequest.getDate());
                 remindersRepository.save(reminders);
+                return (ModifyRemindersResponse) remindersRepository;
             }else {
                 throw new IllegalArgumentException("Reminder does not exist");
             }
