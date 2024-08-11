@@ -70,8 +70,8 @@ public class NotesServiceImplTest {
         assertThat(notes.getTitle()).isEqualTo("THE GODS ARE CRAZY");
         assertThat(notes.getContent()).isEqualTo("A Relaxing, breathtaking movie of the year");
         assertThat(notes.getAuthor()).isNotNull();
-        assertThat(notes.getDate()).isEqualTo(LocalDate.now());
-        assertThat(notes.get)
+        assertThat(notes.getAuthor().getLastName()).isEqualTo("Bob");
+        assertThat(notes.getAuthor().getFirstName()).isEqualTo("Marlon");
     }
 
 

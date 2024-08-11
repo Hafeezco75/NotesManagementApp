@@ -1,7 +1,7 @@
 package com.ebay.westafrica.dtos.requests;
 
 import com.ebay.westafrica.data.models.NotesCategory;
-import com.ebay.westafrica.data.models.NotesStatus;
+import com.ebay.westafrica.data.models.ReminderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,10 +14,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class AddReminderRequest {
-    private String reminderId;
-    private String reminderTitle;
-    private String reminderDescription;
+    private String Title;
+    private String Description;
     private LocalDateTime reminderDate;
     private NotesCategory notesCategory;
-    private NotesStatus reminderStatus;
+    private ReminderStatus reminderStatus;
 }

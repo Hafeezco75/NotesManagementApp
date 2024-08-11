@@ -3,7 +3,7 @@ package com.ebay.westafrica.data.models;
 import lombok.Getter;
 
 @Getter
-public enum NotesStatus {
+public enum ReminderStatus {
     COMPLETED,
     DELETED,
     UPDATED,

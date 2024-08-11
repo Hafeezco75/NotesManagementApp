@@ -14,9 +14,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class Reminders {
+    private String id;
     private LocalDateTime date;
-    private String reminderTitle;
-    private String reminderDescription;
-    private NotesStatus notesStatus;
-    private NotesCategory notesCategory;
+    private String Title;
+    private String Description;
+    private ReminderStatus notesStatus;
 }
