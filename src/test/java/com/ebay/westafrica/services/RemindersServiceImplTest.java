@@ -2,6 +2,7 @@ package com.ebay.westafrica.services;
 
 import com.ebay.westafrica.data.models.NotesCategory;
 import com.ebay.westafrica.data.models.ReminderStatus;
+import com.ebay.westafrica.data.models.Reminders;
 import com.ebay.westafrica.dtos.requests.AddReminderRequest;
 import com.ebay.westafrica.dtos.requests.ModifyNotesRequest;
 import com.ebay.westafrica.dtos.requests.ModifyRemindersRequest;
@@ -58,5 +59,11 @@ public class RemindersServiceImplTest {
         ModifyRemindersResponse modifyRemindersResponse = remindersService.modifyReminder(modifyRemindersRequest);
         assertThat(modifyRemindersResponse.getMessage()).isNotNull();
         assertThat(modifyRemindersResponse.getMessage()).isEqualTo("Successfully modified reminder");
+    }
+
+    @Test
+    public void testThatUserCanGetAllReminders() {
+        Reminders reminders = new Reminders();
+
     }
 }

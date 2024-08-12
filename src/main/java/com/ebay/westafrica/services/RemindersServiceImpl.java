@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class RemindersServiceImpl implements RemindersService {
@@ -71,4 +72,8 @@ public class RemindersServiceImpl implements RemindersService {
         return modifyRemindersResponse;
     }
 
+    @Override
+    public List<Reminders> getReminders(){
+        return remindersRepository.findAll();
+    }
 }

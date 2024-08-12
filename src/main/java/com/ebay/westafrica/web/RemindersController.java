@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class RemindersController {
     @Autowired
@@ -50,5 +52,14 @@ public class RemindersController {
         }
     }
 
+    @GetMapping("/")
+    public ResponseEntity<?> getReminders() {
+        try {
+            List<Reminders> reminders = remindersService.getReminders();
+            return new ResponseEntity<>(new ApiResponse(true, reminders), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_GATEWAY);
+        }
+    }
 
 }
