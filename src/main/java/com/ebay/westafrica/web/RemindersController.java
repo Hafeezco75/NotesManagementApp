@@ -4,6 +4,7 @@ import com.ebay.westafrica.data.models.Reminders;
 import com.ebay.westafrica.dtos.requests.AddReminderRequest;
 import com.ebay.westafrica.dtos.requests.ModifyRemindersRequest;
 import com.ebay.westafrica.dtos.requests.RemoveReminderRequest;
+import com.ebay.westafrica.dtos.requests.RetrieveAllRemindersRequest;
 import com.ebay.westafrica.dtos.responses.AddReminderResponse;
 import com.ebay.westafrica.dtos.responses.ApiResponse;
 import com.ebay.westafrica.dtos.responses.ModifyRemindersResponse;
@@ -53,9 +54,9 @@ public class RemindersController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getReminders() {
+    public ResponseEntity<?> getReminders(RetrieveAllRemindersRequest retrieveAllRemindersRequest) {
         try {
-            List<Reminders> reminders = remindersService.getReminders();
+            List<Reminders> reminders = remindersService.getReminders(retrieveAllRemindersRequest);
             return new ResponseEntity<>(new ApiResponse(true, reminders), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_GATEWAY);

@@ -6,6 +6,7 @@ import com.ebay.westafrica.data.repositories.NotesRepository;
 import com.ebay.westafrica.dtos.requests.AddNotesRequest;
 import com.ebay.westafrica.dtos.requests.ModifyNotesRequest;
 import com.ebay.westafrica.dtos.requests.RemoveNotesRequest;
+import com.ebay.westafrica.dtos.requests.RetrieveAllNotesRequest;
 import com.ebay.westafrica.dtos.responses.AddNotesResponse;
 import com.ebay.westafrica.dtos.responses.ModifyNotesResponse;
 import com.ebay.westafrica.dtos.responses.RemoveNotesResponse;
@@ -78,7 +79,7 @@ public class NotesServiceImpl implements NotesService{
     }
 
     @Override
-    public List<Notes> getAllNotes(){
+    public List<Notes> getAllNotes(RetrieveAllNotesRequest retrieveAllNotesRequest){
         return notesRepository.findAll();
     }
 }

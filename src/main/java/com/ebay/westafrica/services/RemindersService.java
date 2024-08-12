@@ -4,6 +4,7 @@ import com.ebay.westafrica.data.models.Reminders;
 import com.ebay.westafrica.dtos.requests.AddReminderRequest;
 import com.ebay.westafrica.dtos.requests.ModifyRemindersRequest;
 import com.ebay.westafrica.dtos.requests.RemoveReminderRequest;
+import com.ebay.westafrica.dtos.requests.RetrieveAllRemindersRequest;
 import com.ebay.westafrica.dtos.responses.AddReminderResponse;
 import com.ebay.westafrica.dtos.responses.ModifyRemindersResponse;
 import com.ebay.westafrica.dtos.responses.RemoveReminderResponse;
@@ -21,5 +22,5 @@ public interface RemindersService {
 
     ModifyRemindersResponse modifyReminder(ModifyRemindersRequest modifyRemindersRequest);
 
-    List<Reminders> getReminders();
+    List<Reminders> getReminders(RetrieveAllRemindersRequest retrieveAllReminders);
 }

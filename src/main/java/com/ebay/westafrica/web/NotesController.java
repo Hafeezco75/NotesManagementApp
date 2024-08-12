@@ -4,6 +4,7 @@ import com.ebay.westafrica.data.models.Notes;
 import com.ebay.westafrica.dtos.requests.AddNotesRequest;
 import com.ebay.westafrica.dtos.requests.ModifyNotesRequest;
 import com.ebay.westafrica.dtos.requests.RemoveNotesRequest;
+import com.ebay.westafrica.dtos.requests.RetrieveAllNotesRequest;
 import com.ebay.westafrica.dtos.responses.AddNotesResponse;
 import com.ebay.westafrica.dtos.responses.ApiResponse;
 import com.ebay.westafrica.dtos.responses.ModifyNotesResponse;
@@ -53,11 +54,11 @@ public class NotesController {
         }
     }
 
-    @GetMapping("/")
-    public ResponseEntity<?> getAllNotes() {
+    @GetMapping("/getAllNotes")
+    public ResponseEntity<?> getAllNotes(RetrieveAllNotesRequest retrieveAllNotesRequest) {
         try{
-            List<Notes> notesList = notesService.getAllNotes();
-            return new ResponseEntity<>(notesService.getAllNotes(), HttpStatus.ACCEPTED);
+            List<Notes> notesList = notesService.getAllNotes(retrieveAllNotesRequest);
+            return new ResponseEntity<>(new ApiResponse(true, notesList), HttpStatus.ACCEPTED);
         }catch (Exception e) {
             return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_GATEWAY);
         }

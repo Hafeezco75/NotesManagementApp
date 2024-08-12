@@ -8,7 +8,6 @@ import com.ebay.westafrica.dtos.requests.RetrieveAllNotesRequest;
 import com.ebay.westafrica.dtos.responses.AddNotesResponse;
 import com.ebay.westafrica.dtos.responses.ModifyNotesResponse;
 import com.ebay.westafrica.dtos.responses.RemoveNotesResponse;
-import com.ebay.westafrica.dtos.responses.RetrieveAllNotesResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,5 +20,5 @@ public interface NotesService {
 
     ModifyNotesResponse editNotes(ModifyNotesRequest modifyNotesRequest);
 
-    List<Notes> getAllNotes();
+    List<Notes> getAllNotes(RetrieveAllNotesRequest retrieveAllNotesRequest);
 }

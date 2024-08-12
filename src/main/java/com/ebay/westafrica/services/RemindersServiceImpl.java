@@ -6,6 +6,7 @@ import com.ebay.westafrica.data.repositories.RemindersRepository;
 import com.ebay.westafrica.dtos.requests.AddReminderRequest;
 import com.ebay.westafrica.dtos.requests.ModifyRemindersRequest;
 import com.ebay.westafrica.dtos.requests.RemoveReminderRequest;
+import com.ebay.westafrica.dtos.requests.RetrieveAllRemindersRequest;
 import com.ebay.westafrica.dtos.responses.AddReminderResponse;
 import com.ebay.westafrica.dtos.responses.ModifyRemindersResponse;
 import com.ebay.westafrica.dtos.responses.RemoveReminderResponse;
@@ -55,25 +56,25 @@ public class RemindersServiceImpl implements RemindersService {
 
     @Override
     public ModifyRemindersResponse modifyReminder(ModifyRemindersRequest modifyRemindersRequest){
-        for (Reminders reminders : remindersRepository.findAll()) {
-            if (reminders.getTitle().equalsIgnoreCase(modifyRemindersRequest.getTitle())){
-                reminders.setTitle(modifyRemindersRequest.getTitle());
-                reminders.setDescription(modifyRemindersRequest.getDescription());
-                reminders.setDate(modifyRemindersRequest.getDate());
-                remindersRepository.save(reminders);
-                return (ModifyRemindersResponse) remindersRepository;
+        ModifyRemindersResponse modifyRemindersResponse = new ModifyRemindersResponse();
+        List<Reminders> reminders = remindersRepository.findAll();
+            for (Reminders reminder : reminders) {
+                if (reminder != null){
+                reminder.setTitle(modifyRemindersRequest.getTitle());
+                reminder.setDescription(modifyRemindersRequest.getDescription());
+                reminder.setDate(modifyRemindersRequest.getDate());
+                remindersRepository.save(reminder);
+                modifyRemindersResponse.setMessage("Reminder updated successfully");
+                return modifyRemindersResponse;
             }else {
                 throw new IllegalArgumentException("Reminder does not exist");
             }
         }
-
-        ModifyRemindersResponse modifyRemindersResponse = new ModifyRemindersResponse();
-        modifyRemindersResponse.setMessage("Successfully modified reminder");
-        return modifyRemindersResponse;
+            return null;
     }
 
     @Override
-    public List<Reminders> getReminders(){
+    public List<Reminders> getReminders(RetrieveAllRemindersRequest retrieveAllReminders){
         return remindersRepository.findAll();
     }
 }

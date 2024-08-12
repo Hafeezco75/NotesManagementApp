@@ -3,10 +3,7 @@ package com.ebay.westafrica.services;
 import com.ebay.westafrica.data.models.NotesCategory;
 import com.ebay.westafrica.data.models.ReminderStatus;
 import com.ebay.westafrica.data.models.Reminders;
-import com.ebay.westafrica.dtos.requests.AddReminderRequest;
-import com.ebay.westafrica.dtos.requests.ModifyNotesRequest;
-import com.ebay.westafrica.dtos.requests.ModifyRemindersRequest;
-import com.ebay.westafrica.dtos.requests.RemoveReminderRequest;
+import com.ebay.westafrica.dtos.requests.*;
 import com.ebay.westafrica.dtos.responses.AddReminderResponse;
 import com.ebay.westafrica.dtos.responses.ModifyRemindersResponse;
 import com.ebay.westafrica.dtos.responses.RemoveReminderResponse;
@@ -15,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -57,13 +56,19 @@ public class RemindersServiceImplTest {
         modifyRemindersRequest.setNotesCategory(NotesCategory.MOVIES);
         modifyRemindersRequest.setReminderStatus(ReminderStatus.NEWLYADDED);
         ModifyRemindersResponse modifyRemindersResponse = remindersService.modifyReminder(modifyRemindersRequest);
-        assertThat(modifyRemindersResponse.getMessage()).isNotNull();
-        assertThat(modifyRemindersResponse.getMessage()).isEqualTo("Successfully modified reminder");
+        assertThat(modifyRemindersResponse.getMessage()).isEqualTo("Reminder Updated s ." +
+                "uccessfully");
     }
 
     @Test
-    public void testThatUserCanGetAllReminders() {
-        Reminders reminders = new Reminders();
-
+    public void testThatUserCanGetRemindersSize() {
+        RetrieveAllRemindersRequest retrieveAllRemindersRequest = new RetrieveAllRemindersRequest();
+        retrieveAllRemindersRequest.setId("32");
+        List<Reminders> reminders = remindersService.getReminders(retrieveAllRemindersRequest);
+        assertThat(reminders).isNotNull();
+        assertThat(reminders.size()).isGreaterThan(0);
+        assertThat(reminders.size()).isEqualTo(1);
     }
+
+
 }
