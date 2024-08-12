@@ -56,8 +56,7 @@ public class RemindersServiceImplTest {
         modifyRemindersRequest.setNotesCategory(NotesCategory.MOVIES);
         modifyRemindersRequest.setReminderStatus(ReminderStatus.NEWLYADDED);
         ModifyRemindersResponse modifyRemindersResponse = remindersService.modifyReminder(modifyRemindersRequest);
-        assertThat(modifyRemindersResponse.getMessage()).isEqualTo("Reminder Updated s ." +
-                "uccessfully");
+        assertThat(modifyRemindersResponse.getMessage()).isEqualTo("Reminder updated successfully");
     }
 
     @Test
