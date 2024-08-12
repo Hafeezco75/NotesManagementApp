@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class NotesServiceImpl implements NotesService{
@@ -77,16 +78,7 @@ public class NotesServiceImpl implements NotesService{
     }
 
     @Override
-    public Notes getAllNotes(Notes notesId){
-        for (Notes notes : notesRepository.findAll()) {
-            if (notes.getId().equals(notesId.getId())) {
-                if (notes.getTitle().equals(notesId.getTitle())) {
-                    return notes;
-                }
-            }else {
-                throw new IllegalArgumentException("Cannot find Notes,input field correctly");
-            }
-        }
-        return null;
+    public List<Notes> getAllNotes(){
+        return notesRepository.findAll();
     }
 }

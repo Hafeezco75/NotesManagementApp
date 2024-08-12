@@ -1,5 +1,6 @@
 package com.ebay.westafrica.web;
 
+import com.ebay.westafrica.data.models.Notes;
 import com.ebay.westafrica.dtos.requests.AddNotesRequest;
 import com.ebay.westafrica.dtos.requests.ModifyNotesRequest;
 import com.ebay.westafrica.dtos.requests.RemoveNotesRequest;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -45,6 +48,16 @@ public class NotesController {
         try {
             ModifyNotesResponse modifyNotesResponse = notesService.editNotes(modifyNotesRequest);
             return new ResponseEntity<>(new ApiResponse(true, modifyNotesResponse), HttpStatus.ACCEPTED);
+        }catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_GATEWAY);
+        }
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<?> getAllNotes() {
+        try{
+            List<Notes> notesList = notesService.getAllNotes();
+            return new ResponseEntity<>(notesService.getAllNotes(), HttpStatus.ACCEPTED);
         }catch (Exception e) {
             return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_GATEWAY);
         }

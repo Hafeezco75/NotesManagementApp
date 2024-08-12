@@ -11,6 +11,8 @@ import com.ebay.westafrica.dtos.responses.RemoveNotesResponse;
 import com.ebay.westafrica.dtos.responses.RetrieveAllNotesResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface NotesService {
     AddNotesResponse addNotes(AddNotesRequest addNotesRequest);
@@ -19,5 +21,5 @@ public interface NotesService {
 
     ModifyNotesResponse editNotes(ModifyNotesRequest modifyNotesRequest);
 
-    Notes getAllNotes(Notes notesId);
+    List<Notes> getAllNotes();
 }
