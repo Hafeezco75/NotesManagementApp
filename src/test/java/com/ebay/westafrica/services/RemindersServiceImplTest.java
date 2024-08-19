@@ -44,7 +44,7 @@ public class RemindersServiceImplTest {
         removeReminderRequest.setNotesCategory(NotesCategory.DAILYMOTIVATION);
         removeReminderRequest.setReminderStatus(ReminderStatus.NEWLYADDED);
         RemoveReminderResponse removeReminderResponse = remindersService.removeReminder(removeReminderRequest);
-        assertThat(removeReminderResponse.getMessage()).isEqualTo("Reminder Deleted Successfully");
+        assertThat(removeReminderResponse.getMessage()).isEqualTo("Successfully removed reminder");
     }
 
     @Test

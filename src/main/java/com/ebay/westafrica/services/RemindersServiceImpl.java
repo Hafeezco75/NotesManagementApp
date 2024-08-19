@@ -38,19 +38,17 @@ public class RemindersServiceImpl implements RemindersService {
 
     @Override
     public RemoveReminderResponse removeReminder(RemoveReminderRequest reminderRequest) {
+        RemoveReminderResponse removeReminderResponse =  new RemoveReminderResponse();
         for (Reminders reminders : remindersRepository.findAll()) {
-            if (reminders.getDate().equals(reminderRequest.getReminderDate())) {
-                if (reminders.getTitle().equals(reminderRequest.getTitle())) {
-                    remindersRepository.delete(reminders);
-                }
+            if (reminders.getTitle().equals(reminderRequest.getTitle())){
+                remindersRepository.delete(reminders);
+                removeReminderResponse.setMessage("Successfully removed reminder");
+                return removeReminderResponse;
             } else {
                 throw new IllegalArgumentException("Reminder does not exist");
             }
         }
-
-        RemoveReminderResponse removeReminderResponse = new RemoveReminderResponse();
-        removeReminderResponse.setMessage("Successfully removed reminder");
-        return removeReminderResponse;
+        return null;
     }
 
 

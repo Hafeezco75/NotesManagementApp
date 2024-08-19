@@ -39,25 +39,23 @@ public class NotesServiceImpl implements NotesService{
 
     @Override
     public RemoveNotesResponse deleteNotes(RemoveNotesRequest removeNotesRequest){
+        RemoveNotesResponse removeNotesResponse = new RemoveNotesResponse();
             for (Notes notes : notesRepository.findAll()) {
                 if (notes.getId().equalsIgnoreCase (removeNotesRequest.getId())) {
                     if (notes.getTitle().equalsIgnoreCase(removeNotesRequest.getTitle())) {
-                        removeNotesRequest.setTitle(notes.getTitle());
-                        removeNotesRequest.setId(notes.getId());
-                        removeNotesRequest.setAuthor(notes.getAuthor());
-                        removeNotesRequest.setDate(notes.getDate());
                         notesRepository.delete(notes);
+                    } else {
+                        throw new IllegalArgumentException("Notes id does not match,input correct id");
                     }
                 }
             }
-
-        RemoveNotesResponse removeNotesResponse = new RemoveNotesResponse();
         removeNotesResponse.setMessage("Notes has been deleted successfully");
         return removeNotesResponse;
     }
 
     @Override
     public ModifyNotesResponse editNotes(ModifyNotesRequest modifyNotesRequest){
+        ModifyNotesResponse modifyNotesResponse = new ModifyNotesResponse();
         for (Notes notes: notesRepository.findAll()) {
             if (notes.getId().equals(modifyNotesRequest.getId())) {
                 if (notes.getTitle().equals(modifyNotesRequest.getTitle())) {
@@ -73,7 +71,6 @@ public class NotesServiceImpl implements NotesService{
             }
         }
 
-        ModifyNotesResponse modifyNotesResponse = new ModifyNotesResponse();
         modifyNotesResponse.setMessage("Notes has been updated successfully");
         return modifyNotesResponse;
     }

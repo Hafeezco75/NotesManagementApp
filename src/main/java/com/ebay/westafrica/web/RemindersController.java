@@ -18,12 +18,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/v1")
 public class RemindersController {
     @Autowired
     private RemindersService remindersService;
 
 
-    @PostMapping("/")
+    @PostMapping("/Add")
     public ResponseEntity<?> setReminders(AddReminderRequest addReminderRequest) {
         try{
             AddReminderResponse addReminderResponse = remindersService.setReminders(addReminderRequest);
@@ -43,7 +44,7 @@ public class RemindersController {
         }
     }
 
-    @PutMapping("/")
+    @PutMapping("/update")
     public ResponseEntity<?> updateReminders(ModifyRemindersRequest modifyRemindersRequest) {
         try {
             ModifyRemindersResponse modifyRemindersResponse = remindersService.modifyReminder(modifyRemindersRequest);
@@ -53,7 +54,7 @@ public class RemindersController {
         }
     }
 
-    @GetMapping("/")
+    @GetMapping("/Get")
     public ResponseEntity<?> getReminders(RetrieveAllRemindersRequest retrieveAllRemindersRequest) {
         try {
             List<Reminders> reminders = remindersService.getReminders(retrieveAllRemindersRequest);
