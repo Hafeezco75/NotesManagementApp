@@ -55,9 +55,9 @@ public class NotesController {
     }
 
     @GetMapping("/getAllNotes")
-    public ResponseEntity<?> getAllNotes(RetrieveAllNotesRequest retrieveAllNotesRequest) {
+    public ResponseEntity<?> getAllNotes() {
         try{
-            List<Notes> notesList = notesService.getAllNotes(retrieveAllNotesRequest);
+            List<Notes> notesList = notesService.getAllNotes();
             return new ResponseEntity<>(new ApiResponse(true, notesList), HttpStatus.ACCEPTED);
         }catch (Exception e) {
             return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_GATEWAY);

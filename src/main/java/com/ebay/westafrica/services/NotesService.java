@@ -20,5 +20,5 @@ public interface NotesService {
 
     ModifyNotesResponse editNotes(ModifyNotesRequest modifyNotesRequest);
 
-    List<Notes> getAllNotes(RetrieveAllNotesRequest retrieveAllNotesRequest);
+    List<Notes> getAllNotes();
 }

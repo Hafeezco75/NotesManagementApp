@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -26,7 +27,6 @@ public class NotesServiceImplTest {
     @Test
     public void testThatNotesCanBeAddedByAuthor() {
         AddNotesRequest addRequest = new AddNotesRequest();
-        addRequest.setId("25");
         addRequest.setTitle("THE GODS ARE CRAZY");
         addRequest.setContent("A Relaxing, breathtaking movie of the year");
         addRequest.setAuthor(new Author("43","Bob","Marlon","Bob@gmail.com","crested234"));
@@ -58,20 +58,17 @@ public class NotesServiceImplTest {
         modifyRequest.setContent("A Relaxing, breathtaking movie of the decade");
         modifyRequest.setAuthor(new Author("43","Bob","Marlon","Bob@gmail.com","crested234"));
         modifyRequest.setCategory(NotesCategory.MOVIES);
-        modifyRequest.setPublishDate(LocalDate.parse("2021"));
+        modifyRequest.setPublishDate(LocalDate.now());
         ModifyNotesResponse modifyNotesResponse = notesService.editNotes(modifyRequest);
         assertThat(modifyNotesResponse.getMessage()).isEqualTo("Notes has been updated successfully");
     }
 
     @Test
     public void testThatNotesCanBeRetrievedByUser() {
-        Notes notes = new Notes();
-        assertThat(notes.getId()).isEqualTo("29");
-        assertThat(notes.getTitle()).isEqualTo("THE GODS ARE CRAZY");
-        assertThat(notes.getContent()).isEqualTo("A Relaxing, breathtaking movie of the year");
-        assertThat(notes.getAuthor()).isNotNull();
-        assertThat(notes.getAuthor().getLastName()).isEqualTo("Bob");
-        assertThat(notes.getAuthor().getFirstName()).isEqualTo("Marlon");
+        List<Notes> notes = notesService.getAllNotes();
+        notes.forEach(note -> note.setId(note.getId() + 1));
+        assertThat(notes.size()).isNotNull();
+        assertThat(notes.size()).isEqualTo(1);
     }
 
 

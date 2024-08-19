@@ -39,7 +39,7 @@ public class RemindersServiceImplTest {
     public void testThatUserCanRemoveReminders() {
         RemoveReminderRequest removeReminderRequest = new RemoveReminderRequest();
         removeReminderRequest.setTitle("WAKE UP NIGERIA");
-        removeReminderRequest.setDescription("Badass system and politicised Government");
+        removeReminderRequest.setDescription("Remove Bad Government and Deploy Centralised Monarchy");
         removeReminderRequest.setReminderDate(LocalDateTime.parse("2020-04-03T09:14:15"));
         removeReminderRequest.setNotesCategory(NotesCategory.DAILYMOTIVATION);
         removeReminderRequest.setReminderStatus(ReminderStatus.NEWLYADDED);
@@ -65,7 +65,6 @@ public class RemindersServiceImplTest {
         retrieveAllRemindersRequest.setId("32");
         List<Reminders> reminders = remindersService.getReminders(retrieveAllRemindersRequest);
         assertThat(reminders).isNotNull();
-        assertThat(reminders.size()).isGreaterThan(0);
         assertThat(reminders.size()).isEqualTo(1);
     }
 

@@ -4,15 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDate;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@EntityScan
+@Document
 public class BackUpNotes {
-    private String message;
     boolean isCreated;
+    private String title;
+    private String content;
+    private Author author;
+    private LocalDate publishDate;
 }
